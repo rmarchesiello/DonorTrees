@@ -24,9 +24,28 @@ class BSTNode(Generic[T]):
         Iterate over the children of this node.
         :return:
         """
-
         if self.left is not None:
             yield self.left
         if self.right is not None:
             yield self.right
+
+    def getMinNode(self):
+        ...
+
+    def getMaxNode(self):
+        ...
+
+    def addValue(self):
+        ...
+
+    def removeValue(self):
+        ...
+
+    def height(self):
+        ...
+
+    def __len__(self):
+        ...
+
+
 
