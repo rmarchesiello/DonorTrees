@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "TreeProblem", "TreeProblem.pyproj", "{DB465C76-9BC8-43CC-A616-198F07C4D3AD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DB465C76-9BC8-43CC-A616-198F07C4D3AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB465C76-9BC8-43CC-A616-198F07C4D3AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B9E1429E-EF64-43EF-B1BC-2CC2BEC374CD}
+	EndGlobalSection
+EndGlobal
