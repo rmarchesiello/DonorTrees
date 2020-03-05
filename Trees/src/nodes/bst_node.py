@@ -19,6 +19,9 @@ class BSTNode(Generic[T]):
         """
         super().__init__(value, 2, children, parent)
 
+        self.value = value
+
+
     def __iter__(self) -> Iterable["BSTNode[T]"]:
         """
         Iterate over the children of this node.
