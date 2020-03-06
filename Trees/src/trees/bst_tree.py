@@ -23,9 +23,9 @@ class BST(Generic[T, K]):
         It serves the same role as the key function in the min, max, and sorted builtin
         functions
         """
-        self.root = root
-        self.left_child = None
-        self.right_child = None
+        self.root = root  # this should be a BSTNode object
+        self.key = key  # how a node's value will be compared
+        self.length = 0  # keeps track of how many nodes are in the BST
 
     @property
     def height(self) -> int:
@@ -33,33 +33,49 @@ class BST(Generic[T, K]):
         Compute the height of the tree. If the tree is empty its height is -1
         :return:
         """
-        ...
+        if self.length == 0:
+            return -1
+        else:  # I think the height of a BST is log base 2 N; but ill check on that
+            pass
 
     def __len__(self) -> int:
         """
         :return: the number of nodes in the tree
         """
-        ...
+        return self.length
 
-    def add_value(self, value: T) -> None:
+    def add_value(self, value: T, curNode: BSTNode = None) -> None:
         """
         Add value to this BST
-        :param value:
-        :return:
+        :param curNode: defaults to None, but is the current node that the algorithm is on
+        :param value: the donation amount
+        :return: None
         """
-        #if not self.root:
-        #    self.root = value
-        #else:
-        #    if value > self.root:
-        #        if self.right_child is None:
-        #            self.right_child = BSTNode(value)
-        #        else:
-        #            self.right_child.add_value(value)
-        #    elif value < self.root:
-        #        if self.left_child is None:
-        #            self.left_child = BSTNode(value)
-        #        else:
-        #            self.left_child.add_value(value)
+        curNode = self.root
+        # base case- tree is empty so create a node and make it the root
+        if self.root is None:
+            self.root = BSTNode(value)
+            self.length = self.length + 1
+
+        elif value < curNode.value:
+            if curNode.getLeftChild() == -1:  # in other words, if curNode doesn't have a left child..
+                curNode.leftChild = BSTNode(value, parent=curNode)
+            else:
+                self.add_value(value, curNode.leftChild)
+
+        else:  # value > curNode.rightChild:
+            if curNode.getRightChild() == -1:
+                curNode.rightChild = BSTNode(value, parent=curNode)
+            else:
+                self.add_value(value, curNode.rightChild)
+
+        # elif value < curNode.value: #go down left side
+        #     curNode.leftChild = self.add_value(value, curNode.leftChild) #recursive call
+        #     curNode.leftChild.parent = curNode
+        #
+        # else: # go down right side
+        #     curNode.rightChild = self.add_value(value, curNode.rightChild)
+        #     curNode.rightChild.parent = curNode
 
     def get_node(self, value: K) -> BSTNode[T]:
         """
