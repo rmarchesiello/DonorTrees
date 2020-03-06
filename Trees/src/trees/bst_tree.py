@@ -23,8 +23,9 @@ class BST(Generic[T, K]):
         It serves the same role as the key function in the min, max, and sorted builtin
         functions
         """
-        self.root = ...
-        ...
+        self.root = root
+        self.left_child = None
+        self.right_child = None
 
     @property
     def height(self) -> int:
@@ -46,7 +47,19 @@ class BST(Generic[T, K]):
         :param value:
         :return:
         """
-        ...
+        #if not self.root:
+        #    self.root = value
+        #else:
+        #    if value > self.root:
+        #        if self.right_child is None:
+        #            self.right_child = BSTNode(value)
+        #        else:
+        #            self.right_child.add_value(value)
+        #    elif value < self.root:
+        #        if self.left_child is None:
+        #            self.left_child = BSTNode(value)
+        #        else:
+        #            self.left_child.add_value(value)
 
     def get_node(self, value: K) -> BSTNode[T]:
         """
