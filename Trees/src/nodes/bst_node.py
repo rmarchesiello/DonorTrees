@@ -17,8 +17,9 @@ class BSTNode(Generic[T]):
         :param children: optional children
         :param parent: an optional parent node
         """
-
         self.value = value
+        self.children = children
+        self.parent = parent
 
     def __iter__(self) -> Iterable["BSTNode[T]"]:
         """
@@ -29,5 +30,3 @@ class BSTNode(Generic[T]):
             yield self.left
         if self.right is not None:
             yield self.right
-
-

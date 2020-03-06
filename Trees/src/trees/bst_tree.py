@@ -23,8 +23,8 @@ class BST(Generic[T, K]):
         It serves the same role as the key function in the min, max, and sorted builtin
         functions
         """
-        self.root = ...
-        ...
+        self.root = root
+        self.key = key  # how a node's value will be compared
 
     @property
     def height(self) -> int:
