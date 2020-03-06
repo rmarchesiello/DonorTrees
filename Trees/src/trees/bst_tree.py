@@ -25,6 +25,7 @@ class BST(Generic[T, K]):
         """
         self.root = root
         self.key = key  # how a node's value will be compared
+        self.length = 0  # keeps track of how many nodes are in the BST
 
     @property
     def height(self) -> int:
@@ -32,13 +33,16 @@ class BST(Generic[T, K]):
         Compute the height of the tree. If the tree is empty its height is -1
         :return:
         """
-        ...
+        if self.length == 0:
+            return -1
+        else:  # I think the height of a BST is log base 2 N; but ill check on that
+            pass
 
     def __len__(self) -> int:
         """
         :return: the number of nodes in the tree
         """
-        ...
+        return self.length
 
     def add_value(self, value: T) -> None:
         """
@@ -46,7 +50,19 @@ class BST(Generic[T, K]):
         :param value:
         :return:
         """
-        ...
+        curNode = self.root
+        # base case- tree is empty so create a node and make it the root
+        if self.root is None:
+            self.root = BSTNode(value)
+            self.length = self.length + 1
+
+        elif value < curNode.value: #go down the left side of the tree:
+
+
+        else: #go down the right side of the tree
+
+
+
 
     def get_node(self, value: K) -> BSTNode[T]:
         """
