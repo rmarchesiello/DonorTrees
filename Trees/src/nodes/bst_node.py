@@ -19,6 +19,8 @@ class BSTNode(Generic[T]):
         """
         self.value = value
         self.children = children
+        self.leftChild = None
+        self.rightChild = None
         self.parent = parent
 
     def __iter__(self) -> Iterable["BSTNode[T]"]:
@@ -30,3 +32,9 @@ class BSTNode(Generic[T]):
             yield self.left
         if self.right is not None:
             yield self.right
+
+    def getRightChild(self):
+        return self.rightChild
+
+    def getLeftChild(self):
+        return self.leftChild

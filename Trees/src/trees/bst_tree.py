@@ -23,7 +23,7 @@ class BST(Generic[T, K]):
         It serves the same role as the key function in the min, max, and sorted builtin
         functions
         """
-        self.root = root
+        self.root = root #this should be a BSTNode object
         self.key = key  # how a node's value will be compared
         self.length = 0  # keeps track of how many nodes are in the BST
 
@@ -44,9 +44,10 @@ class BST(Generic[T, K]):
         """
         return self.length
 
-    def add_value(self, value: T) -> None:
+    def add_value(self, value: T, curNode: BSTNode) -> None:
         """
         Add value to this BST
+        :param curNode:
         :param value:
         :return:
         """
@@ -56,10 +57,20 @@ class BST(Generic[T, K]):
             self.root = BSTNode(value)
             self.length = self.length + 1
 
-        elif value < curNode.value: #go down the left side of the tree:
+        # elif value < curNode.value: #go down left side
+        #     curNode.leftChild = self.add_value(value, curNode.leftChild) #recursive call
+        #     curNode.leftChild.parent = curNode
+        #
+        # else: # go down right side
+        #     curNode.rightChild = self.add_value(value, curNode.rightChild)
+        #     curNode.rightChild.parent = curNode
 
 
-        else: #go down the right side of the tree
+
+
+
+
+
 
 
 
