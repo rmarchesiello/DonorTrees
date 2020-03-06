@@ -23,7 +23,7 @@ class BST(Generic[T, K]):
         It serves the same role as the key function in the min, max, and sorted builtin
         functions
         """
-        self.root = root #this should be a BSTNode object
+        self.root = root  # this should be a BSTNode object
         self.key = key  # how a node's value will be compared
         self.length = 0  # keeps track of how many nodes are in the BST
 
@@ -44,18 +44,30 @@ class BST(Generic[T, K]):
         """
         return self.length
 
-    def add_value(self, value: T, curNode: BSTNode) -> None:
+    def add_value(self, value: T, curNode: BSTNode = None) -> None:
         """
         Add value to this BST
-        :param curNode:
-        :param value:
-        :return:
+        :param curNode: defaults to None, but is the current node that the algorithm is on
+        :param value: the donation amount
+        :return: None
         """
         curNode = self.root
         # base case- tree is empty so create a node and make it the root
         if self.root is None:
             self.root = BSTNode(value)
             self.length = self.length + 1
+
+        elif value < curNode.value:
+            if curNode.getLeftChild() == -1:  # in other words, if curNode doesn't have a left child..
+                curNode.leftChild = BSTNode(value, parent=curNode)
+            else:
+                self.add_value(value, curNode.leftChild)
+
+        else:  # value > curNode.rightChild:
+            if curNode.getRightChild() == -1:
+                curNode.rightChild = BSTNode(value, parent=curNode)
+            else:
+                self.add_value(value, curNode.rightChild)
 
         # elif value < curNode.value: #go down left side
         #     curNode.leftChild = self.add_value(value, curNode.leftChild) #recursive call
@@ -64,16 +76,6 @@ class BST(Generic[T, K]):
         # else: # go down right side
         #     curNode.rightChild = self.add_value(value, curNode.rightChild)
         #     curNode.rightChild.parent = curNode
-
-
-
-
-
-
-
-
-
-
 
     def get_node(self, value: K) -> BSTNode[T]:
         """

@@ -34,7 +34,13 @@ class BSTNode(Generic[T]):
             yield self.right
 
     def getRightChild(self):
-        return self.rightChild
+        if self.rightChild is None:
+            return -1
+        else:
+            return self.rightChild
 
     def getLeftChild(self):
-        return self.leftChild
+        if self.leftChild is None:
+            return -1
+        else:
+            return self.leftChild
