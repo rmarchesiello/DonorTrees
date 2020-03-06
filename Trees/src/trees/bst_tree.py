@@ -61,7 +61,8 @@ class BST(Generic[T, K]):
             if curNode.getLeftChild() == -1:  # in other words, if curNode doesn't have a left child..
                 curNode.leftChild = BSTNode(value, parent=curNode)
             else:
-                self.add_value(value, curNode.leftChild)
+                self.add_value(value,
+                               curNode.leftChild)  # recursive call to continue to find the correct spot for entry
 
         else:  # value > curNode.rightChild:
             if curNode.getRightChild() == -1:
