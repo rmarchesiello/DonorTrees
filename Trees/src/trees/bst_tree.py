@@ -85,14 +85,27 @@ class BST(Generic[T, K]):
         #     curNode.rightChild = self.add_value(value, curNode.rightChild)
         #     curNode.rightChild.parent = curNode
 
-    def get_node(self, value: K) -> BSTNode[T]:
+    def get_node(self, value: K, curNode: BSTNode = None) -> BSTNode[T]:
         """
         Get the node with the specified value
+        :param curNode:
         :param value:
         :raises MissingValueError if there is no node with the specified value
         :return:
         """
-        ...
+
+        if curNode is None:
+            curNode = self.root
+
+        if curNode.value == value:
+            return curNode
+        elif value < curNode.value:
+            return self.get_node(value, curNode.leftChild)
+        elif value > curNode.value:
+            return self.get_node(value, curNode.rightChild)
+
+        else:  # if the value could not be found in the BST
+            return None
 
     def get_max_node(self) -> BSTNode[T]:
         """
@@ -120,6 +133,14 @@ class BST(Generic[T, K]):
         :raises MissingValueError if the node does not exist
         """
         ...
+        # if currentNode.isLeaf():  # leaf
+        #     if currentNode == currentNode.parent.leftChild:
+        #         currentNode.parent.leftChild = None
+        #     else:
+        #         currentNode.parent.rightChild = None
+        # before doing anything else, must find the node with the specified value
+
+        # 1st case: if the node passed is a leaf
 
     def __eq__(self, other: object) -> bool:
         if self is other:
