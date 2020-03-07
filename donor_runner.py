@@ -13,3 +13,7 @@ if __name__ == "__main__":
     firstBST = BST()
     firstBST.add_value(10)
     print(firstBST.root.value)
+    firstBST.add_value(5)
+    print(firstBST.length)
+    print(firstBST.root.leftChild.value)
+    print(firstBST)

@@ -28,9 +28,9 @@ class BSTNode(Generic[T]):
         Iterate over the children of this node.
         :return:
         """
-        if self.left is not None:
+        if self.leftChild is not None:
             yield self.leftChild
-        if self.right is not None:
+        if self.rightChild is not None:
             yield self.rightChild
 
     def getRightChild(self):

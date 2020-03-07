@@ -24,7 +24,9 @@ class BST(Generic[T, K]):
         functions
         """
         self.root = root  # this should be a BSTNode object
-        self.key = key  # how a node's value will be ordered in the BST??
+        if key is not None:
+            self.key = key  # how a node's value will be ordered in the BST??
+
         self.length = 0  # keeps track of how many nodes are in the BST
 
     @property
@@ -57,7 +59,7 @@ class BST(Generic[T, K]):
             self.root = BSTNode(value)
             self.length = self.length + 1
 
-        elif value < curNode.value:  # I think we have to call key on this??
+        elif self.key(value) < self.key(curNode.value):  # I think we have to call key on this??
             if curNode.getLeftChild() == -1:  # in other words, if curNode doesn't have a left child..
                 curNode.leftChild = BSTNode(value, parent=curNode)
                 self.length = self.length + 1
