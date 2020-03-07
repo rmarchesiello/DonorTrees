@@ -1,7 +1,7 @@
 # Your solution for the donor problem here
 from Trees.src.trees.bst_tree import BST
 from Trees.src.nodes.bst_node import BSTNode
-import sys
+import sys, math
 
 if __name__ == "__main__":
     #with open(sys.argv[1]) as f:
@@ -21,3 +21,5 @@ if __name__ == "__main__":
     firstBST.add_value(31)
     
     print(firstBST.get_max_node().value)
+    print(math.floor(10.4))
+    print(firstBST.height)

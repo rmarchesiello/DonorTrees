@@ -2,6 +2,7 @@ from typing import Optional, Callable, TypeVar, Generic
 
 from Trees.src.errors import MissingValueError, EmptyTreeError
 from Trees.src.nodes.bst_node import BSTNode
+from math import log, floor
 
 T = TypeVar('T')
 K = TypeVar('K')
@@ -38,7 +39,7 @@ class BST(Generic[T, K]):
         if self.length == 0:
             return -1
         else:  # I think the height of a BST is log base 2 N; but ill check on that
-            pass
+            return floor(log(self.length)/log(2))
 
     def __len__(self) -> int:
         """
