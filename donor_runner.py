@@ -13,8 +13,11 @@ if __name__ == "__main__":
     firstBST = BST()
     firstBST.add_value(10)
     firstBST.add_value(5)
-    firstBST.add_value(1)
+    firstBST.add_value(30)
+    firstBST.add_value(15)
+    firstBST.add_value(13)
+    firstBST.add_value(40)
+    firstBST.add_value(39)    
+    firstBST.add_value(31)
     
-    print(firstBST.root.leftChild.value) #5
-    firstBST.remove_value(5)
-    print(firstBST.root.leftChild.value) #1
+    print(firstBST.get_max_node().value)

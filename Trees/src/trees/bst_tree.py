@@ -113,14 +113,20 @@ class BST(Generic[T, K]):
         :return:
         :raises EmptyTreeError if the tree is empty
         """
-        ...
+        curNode = self.root
+        while curNode.getRightChild() != -1:
+            curNode = curNode.rightChild
+        return curNode
 
     def get_min_node(self) -> BSTNode[T]:
         """
         Return the node with the smallest value in the BST
         :return:
         """
-        ...
+        curNode = self.root
+        while curNode.getLeftChild() != -1:
+            curNode = curNode.leftChild
+        return curNode
 
     def remove_value(self, value: T) -> None:
         """
@@ -132,15 +138,6 @@ class BST(Generic[T, K]):
         :return:
         :raises MissingValueError if the node does not exist
         """
-        ...
-        # if currentNode.isLeaf():  # leaf
-        #     if currentNode == currentNode.parent.leftChild:
-        #         currentNode.parent.leftChild = None
-        #     else:
-        #         currentNode.parent.rightChild = None
-        # before doing anything else, must find the node with the specified value
-
-        # 1st case: if the node passed is a leaf
         nodeToRemove = self.get_node(value)
         if nodeToRemove.numChildren() == 0:
             del nodeToRemove
@@ -171,7 +168,11 @@ class BST(Generic[T, K]):
                     del nodeToRemove
                     curParent.leftChild = temp
         elif nodeToRemove.numChildren() == 2:
-            pass
+            curNode = nodeToRemove.rightChild
+            while curNode.getLeftChild() != -1:
+                curNode = curNode.leftChild
+            nodeToRemove.value = curNode.value
+            del curNode
 
 
     def __eq__(self, other: object) -> bool:
