@@ -95,19 +95,22 @@ class BST(Generic[T, K]):
         :raises MissingValueError if there is no node with the specified value
         :return:
         """
+        try:
+            if curNode is None:
+                curNode = self.root
 
-        if curNode is None:
-            curNode = self.root
+            if curNode.value == value:
+                return curNode
+            elif value < curNode.value:
+                return self.get_node(value, curNode.leftChild)
+            elif value > curNode.value:
+                return self.get_node(value, curNode.rightChild)
 
-        if curNode.value == value:
-            return curNode
-        elif value < curNode.value:
-            return self.get_node(value, curNode.leftChild)
-        elif value > curNode.value:
-            return self.get_node(value, curNode.rightChild)
+            else:
+                raise RecursionError
 
-        else:  # if the value could not be found in the BST
-            return None
+        except RecursionError as e:
+            raise MissingValueError
 
     def get_max_node(self) -> BSTNode[T]:
         """
@@ -145,6 +148,7 @@ class BST(Generic[T, K]):
             if nodeToRemove.numChildren() == 0:
                 del nodeToRemove
                 self.length - 1
+
             elif nodeToRemove.numChildren() == 1:
                 if nodeToRemove.getRightChild() != -1:
                     temp = nodeToRemove.rightChild
@@ -176,8 +180,8 @@ class BST(Generic[T, K]):
                     curNode = curNode.leftChild
                 nodeToRemove.value = curNode.value
                 del curNode
-        except RecursionError:
-            raise MissingValueError
+        except MissingValueError:
+            print("value you are trying to remove does not exist!")
 
     def __eq__(self, other: object) -> bool:
         if self is other:
