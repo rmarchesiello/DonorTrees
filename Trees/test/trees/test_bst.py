@@ -30,11 +30,11 @@ class TestBST(unittest.TestCase):
         rootNodes = [root.value, root.leftChild.value, root.leftChild.leftChild.value,
                      root.leftChild.rightChild.value, root.rightChild.value]
 
-        self.assertEqual(treeNodes, rootNodes)
+        self.assertEqual(treeNodes, rootNodes)  # we pass this........
 
         cmp_tree = BST(root)
         cmp_tree._num_nodes = 5
-        self.assertEqual(tree, cmp_tree)
+        self.assertEqual(tree, cmp_tree)  # but we don't pass this
 
     def test_tree_not_eq(self):
         tree = BST()
