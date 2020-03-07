@@ -16,12 +16,11 @@ if __name__ == "__main__":
     firstBST.add_value(11)
     firstBST.add_value(1)
     firstBST.add_value(6)
+    firstBST.add_value(12)
     
     print(firstBST.root.value)
-    print(firstBST.root.leftChild.rightChild.value)
-    for val in firstBST.root:
-        print(val.value)
-
-    print(firstBST.get_node(5))
-    print(firstBST.root.leftChild)
-
+    print(firstBST.root.rightChild.value)
+    print(firstBST.root.rightChild.rightChild.value)
+    firstBST.remove_value(11)
+    print(firstBST.root.value)
+    print(firstBST.root.rightChild.value)

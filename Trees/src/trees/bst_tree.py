@@ -142,9 +142,22 @@ class BST(Generic[T, K]):
 
         # 1st case: if the node passed is a leaf
         nodeToRemove = self.get_node(value)
-        if nodeToRemove == [None, None]:
+        if nodeToRemove.numChildren() == 0:
             del nodeToRemove
             self.length - 1
+        elif nodeToRemove.numChildren() == 1:
+            if nodeToRemove.getRightChild() != -1:
+                temp = nodeToRemove.rightChild
+                if nodeToRemove is nodeToRemove.parent.rightChild:
+                    curParent = nodeToRemove.parent
+                    del nodeToRemove
+                    curParent.rightChild = temp
+                elif nodeToRemove is nodeToRemove.parent.leftChild:
+                    pass
+                elif nodeToRemove is self.root:
+                    pass
+        elif nodeToRemove.numChildren() == 2:
+            pass
 
 
     def __eq__(self, other: object) -> bool:

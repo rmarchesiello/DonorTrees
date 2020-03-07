@@ -44,3 +44,13 @@ class BSTNode(Generic[T]):
             return -1
         else:
             return self.leftChild
+
+    def numChildren(self):
+        if self.children == [None, None]:
+            return 0
+        elif self.leftChild != None and self.rightChild == None: #left child only
+            return 1
+        elif self.leftChild == None and self.rightChild != None: #right child only
+            return 1
+        else:
+            return 2
