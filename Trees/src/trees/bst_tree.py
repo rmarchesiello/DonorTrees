@@ -141,6 +141,11 @@ class BST(Generic[T, K]):
         # before doing anything else, must find the node with the specified value
 
         # 1st case: if the node passed is a leaf
+        nodeToRemove = self.get_node(value)
+        if nodeToRemove == [None, None]:
+            del nodeToRemove
+            self.length - 1
+
 
     def __eq__(self, other: object) -> bool:
         if self is other:

@@ -22,4 +22,6 @@ if __name__ == "__main__":
     for val in firstBST.root:
         print(val.value)
 
-    print((firstBST.get_node(5)).value)
+    print(firstBST.get_node(5))
+    print(firstBST.root.leftChild)
+
