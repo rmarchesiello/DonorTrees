@@ -148,14 +148,28 @@ class BST(Generic[T, K]):
         elif nodeToRemove.numChildren() == 1:
             if nodeToRemove.getRightChild() != -1:
                 temp = nodeToRemove.rightChild
-                if nodeToRemove is nodeToRemove.parent.rightChild:
-                    curParent = nodeToRemove.parent
+                curParent = nodeToRemove.parent
+                if nodeToRemove is self.root:
+                    self.root = nodeToRemove.rightChild
+                    del nodeToRemove
+                elif nodeToRemove is nodeToRemove.parent.leftChild:
+                    del nodeToRemove
+                    curParent.leftChild = temp
+                elif nodeToRemove is nodeToRemove.parent.rightChild:
+                    del nodeToRemove
+                    curParent.rightChild = temp
+            else:
+                temp = nodeToRemove.leftChild
+                curParent = nodeToRemove.parent
+                if nodeToRemove is self.root:
+                    self.root = nodeToRemove.leftChild
+                    del nodeToRemove
+                elif nodeToRemove is nodeToRemove.parent.rightChild:
                     del nodeToRemove
                     curParent.rightChild = temp
                 elif nodeToRemove is nodeToRemove.parent.leftChild:
-                    pass
-                elif nodeToRemove is self.root:
-                    pass
+                    del nodeToRemove
+                    curParent.leftChild = temp
         elif nodeToRemove.numChildren() == 2:
             pass
 
