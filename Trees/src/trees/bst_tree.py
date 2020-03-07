@@ -183,6 +183,24 @@ class BST(Generic[T, K]):
         except MissingValueError:
             print("value you are trying to remove does not exist!")
 
+    def printPreorder(self, root):
+        if root:
+            print(root.value)
+            self.printPreorder(root.leftChild)
+            self.printPreorder(root.rightChild)
+
+    def printInorder(self, root):
+        if root:
+            self.printInorder(root.leftChild)
+            print(root.value)
+            self.printInorder(root.rightChild)
+
+    def printPostorder(self, root):
+        if root:
+            self.printPostorder(root.leftChild)
+            self.printPostorder(root.rightChild)
+            print(root.value)
+
     def __eq__(self, other: object) -> bool:
         if self is other:
             return True
