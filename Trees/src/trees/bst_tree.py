@@ -53,19 +53,20 @@ class BST(Generic[T, K]):
         :param value: the donation amount
         :return: None
         """
-        curNode = self.root
+        if curNode is None:
+            curNode = self.root
         # base case- tree is empty so create a node and make it the root
         if self.root is None:
             self.root = BSTNode(value)
             self.length = self.length + 1
 
-        elif self.key(value) < self.key(curNode.value):  # I think we have to call key on this??
+        elif value < curNode.value:  # I think we have to call key on this??
             if curNode.getLeftChild() == -1:  # in other words, if curNode doesn't have a left child..
                 curNode.leftChild = BSTNode(value, parent=curNode)
                 self.length = self.length + 1
             else:
-                self.add_value(value,
-                               curNode.leftChild)  # recursive call to continue to find the correct spot for entry
+                newNode = curNode.leftChild
+                self.add_value(value, newNode)  # recursive call to continue to find the correct spot for entry
 
         else:  # value > curNode.rightChild:
             if curNode.getRightChild() == -1:
