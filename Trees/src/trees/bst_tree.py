@@ -63,6 +63,7 @@ class BST(Generic[T, K]):
         elif value < curNode.value:  # I think we have to call key on this??
             if curNode.getLeftChild() == -1:  # in other words, if curNode doesn't have a left child..
                 curNode.leftChild = BSTNode(value, parent=curNode)
+                curNode.children[0] = curNode.leftChild
                 self.length = self.length + 1
             else:
                 newNode = curNode.leftChild
@@ -71,6 +72,7 @@ class BST(Generic[T, K]):
         else:  # value > curNode.rightChild:
             if curNode.getRightChild() == -1:
                 curNode.rightChild = BSTNode(value, parent=curNode)
+                curNode.children[1] = curNode.rightChild
                 self.length = self.length + 1
             else:
                 self.add_value(value, curNode.rightChild)

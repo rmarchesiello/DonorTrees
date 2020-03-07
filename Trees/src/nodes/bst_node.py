@@ -18,7 +18,7 @@ class BSTNode(Generic[T]):
         :param parent: an optional parent node
         """
         self.value = value
-        self.children = children
+        self.children = [None, None]
         self.leftChild = None
         self.rightChild = None
         self.parent = parent
