@@ -3,6 +3,7 @@ from typing import Optional, Callable, TypeVar, Generic
 from Trees.src.errors import MissingValueError, EmptyTreeError
 from Trees.src.nodes.bst_node import BSTNode
 from math import log, floor
+import sys
 
 T = TypeVar('T')
 K = TypeVar('K')
@@ -139,42 +140,44 @@ class BST(Generic[T, K]):
         :return:
         :raises MissingValueError if the node does not exist
         """
-        nodeToRemove = self.get_node(value)
-        if nodeToRemove.numChildren() == 0:
-            del nodeToRemove
-            self.length - 1
-        elif nodeToRemove.numChildren() == 1:
-            if nodeToRemove.getRightChild() != -1:
-                temp = nodeToRemove.rightChild
-                curParent = nodeToRemove.parent
-                if nodeToRemove is self.root:
-                    self.root = nodeToRemove.rightChild
-                    del nodeToRemove
-                elif nodeToRemove is nodeToRemove.parent.leftChild:
-                    del nodeToRemove
-                    curParent.leftChild = temp
-                elif nodeToRemove is nodeToRemove.parent.rightChild:
-                    del nodeToRemove
-                    curParent.rightChild = temp
-            else:
-                temp = nodeToRemove.leftChild
-                curParent = nodeToRemove.parent
-                if nodeToRemove is self.root:
-                    self.root = nodeToRemove.leftChild
-                    del nodeToRemove
-                elif nodeToRemove is nodeToRemove.parent.rightChild:
-                    del nodeToRemove
-                    curParent.rightChild = temp
-                elif nodeToRemove is nodeToRemove.parent.leftChild:
-                    del nodeToRemove
-                    curParent.leftChild = temp
-        elif nodeToRemove.numChildren() == 2:
-            curNode = nodeToRemove.rightChild
-            while curNode.getLeftChild() != -1:
-                curNode = curNode.leftChild
-            nodeToRemove.value = curNode.value
-            del curNode
-
+        try:
+            nodeToRemove = self.get_node(value)
+            if nodeToRemove.numChildren() == 0:
+                del nodeToRemove
+                self.length - 1
+            elif nodeToRemove.numChildren() == 1:
+                if nodeToRemove.getRightChild() != -1:
+                    temp = nodeToRemove.rightChild
+                    curParent = nodeToRemove.parent
+                    if nodeToRemove is self.root:
+                        self.root = nodeToRemove.rightChild
+                        del nodeToRemove
+                    elif nodeToRemove is nodeToRemove.parent.leftChild:
+                        del nodeToRemove
+                        curParent.leftChild = temp
+                    elif nodeToRemove is nodeToRemove.parent.rightChild:
+                        del nodeToRemove
+                        curParent.rightChild = temp
+                else:
+                    temp = nodeToRemove.leftChild
+                    curParent = nodeToRemove.parent
+                    if nodeToRemove is self.root:
+                        self.root = nodeToRemove.leftChild
+                        del nodeToRemove
+                    elif nodeToRemove is nodeToRemove.parent.rightChild:
+                        del nodeToRemove
+                        curParent.rightChild = temp
+                    elif nodeToRemove is nodeToRemove.parent.leftChild:
+                        del nodeToRemove
+                        curParent.leftChild = temp
+            elif nodeToRemove.numChildren() == 2:
+                curNode = nodeToRemove.rightChild
+                while curNode.getLeftChild() != -1:
+                    curNode = curNode.leftChild
+                nodeToRemove.value = curNode.value
+                del curNode
+        except RecursionError:
+            raise MissingValueError
 
     def __eq__(self, other: object) -> bool:
         if self is other:
