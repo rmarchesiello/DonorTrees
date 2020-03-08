@@ -4,11 +4,11 @@ from Trees.src.nodes.bst_node import BSTNode
 import sys, math
 
 if __name__ == "__main__":
-    #with open(sys.argv[1]) as f:
-    #    textFile = f.read()
+    with open(sys.argv[1]) as f:
+        textFile = f.read()
 
     firstBSTNode = BSTNode(10)
-    #print(firstBSTNode.value)
+    print(firstBSTNode.value)
 
     firstBST = BST()
     firstBST.add_value(1142)

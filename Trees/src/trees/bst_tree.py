@@ -189,11 +189,17 @@ class BST(Generic[T, K]):
             self.printPreorder(root.leftChild)
             self.printPreorder(root.rightChild)
 
-    def printInorder(self, root):
-        if root:
-            self.printInorder(root.leftChild)
-            print(root.value)
-            self.printInorder(root.rightChild)
+    def printInorder(self, root, reverse = False):
+        if reverse == False:
+            if root:
+                self.printInorder(root.leftChild)
+                print(root.value)
+                self.printInorder(root.rightChild)
+        else:
+            if root:
+                self.printInorder(root.rightChild)
+                print(root.value)
+                self.printInorder(root.leftChild)
 
     def printPostorder(self, root):
         if root:
