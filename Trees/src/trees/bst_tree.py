@@ -28,8 +28,8 @@ class BST(Generic[T, K]):
         self.root = root  # this should be a BSTNode object
         if key is not None:
             self.key = key  # how a node's value will be ordered in the BST??
-
         self.length = 0  # keeps track of how many nodes are in the BST
+        self.inorderList = []
 
     @property
     def height(self) -> int:
@@ -62,7 +62,7 @@ class BST(Generic[T, K]):
             self.root = BSTNode(value)
             self.length = self.length + 1
 
-        elif value < curNode.value:  # I think we have to call key on this??
+        elif self.key(value) < self.key(curNode.value):  # I think we have to call key on this??
             if curNode.getLeftChild() == -1:  # in other words, if curNode doesn't have a left child..
                 curNode.leftChild = BSTNode(value, parent=curNode)
                 curNode.children[0] = curNode.leftChild
@@ -99,11 +99,11 @@ class BST(Generic[T, K]):
             if curNode is None:
                 curNode = self.root
 
-            if curNode.value == value:
+            if self.key(curNode.value) == value:
                 return curNode
-            elif value < curNode.value:
+            elif value < self.key(curNode.value):
                 return self.get_node(value, curNode.leftChild)
-            elif value > curNode.value:
+            elif value > self.key(curNode.value):
                 return self.get_node(value, curNode.rightChild)
 
             else:
@@ -200,6 +200,12 @@ class BST(Generic[T, K]):
                 self.printInorder(root.rightChild)
                 print(root.value)
                 self.printInorder(root.leftChild)
+
+    def storeInorder(self, root):
+        if root:
+            self.storeInorder(root.leftChild)
+            self.inorderList.append(root.value)
+            self.storeInorder(root.rightChild)
 
     def printPostorder(self, root):
         if root:

@@ -8,7 +8,7 @@ class Donor(object):
         self.donation = value
 
     def __str__(self):
-        print(f"{self.key} with a donation of {self.value}")
+        return f"{self.name} with a donation of {self.donation}"
 
     def getNameFromDonation(self, searchValue):
         for name, donation in self.dictionary.items():
