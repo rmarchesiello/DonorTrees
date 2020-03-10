@@ -5,6 +5,21 @@ from Trees.src.donor_prog.donor import Donor
 import sys, math
 
 if __name__ == "__main__":
+    #testTree = BST(key = len)
+
+    #listOfNodes = []
+
+    #testTree.add_value('abcde')
+    #testTree.add_value('a')
+    #testTree.add_value('ab')
+    #testTree.add_value('abc')
+    #testTree.add_value('abcdefgh')
+    #testTree.add_value('abcd')
+    #testTree.add_value('abcdef')
+    #testTree.add_value('abcdefg')
+
+    #testTree.printPreorder(testTree.root)
+
     def findDonorDonation(donorNode : BSTNode(Donor)):
         return donorNode.donation
     
@@ -60,4 +75,6 @@ if __name__ == "__main__":
                     flag = True
             if not flag:
                 print("No Match")
+    else:
+        print("No Match")
     

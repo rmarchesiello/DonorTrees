@@ -221,7 +221,8 @@ class BST(Generic[T, K]):
                 return True
             else:
                 return len(self) == len(other) and self.root.value == other.root.value and \
-                       all((BST(c1) == BST(c2) for c1, c2 in zip(self.root, other.root)))
+                       BST(self.root.left) == BST(other.root.left) and \
+                       BST(self.root.right) == BST(other.root.right)
         else:
             return False
 

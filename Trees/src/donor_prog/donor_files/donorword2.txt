@@ -1,0 +1,8 @@
+7 : abcdefg
+2 : ab
+6 : abcdef
+5 : abcde
+3 : abc
+1 : a
+4 : abcd
+8 : abcdefgh

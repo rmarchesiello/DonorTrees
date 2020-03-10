@@ -13,7 +13,7 @@
     <LaunchProvider>Standard Python launcher</LaunchProvider>
     <InterpreterId>Global|PythonCore|3.7</InterpreterId>
     <TestFramework>Pytest</TestFramework>
-    <CommandLineArguments>"Trees/src/donor_prog/donor_files/donor10.txt" who -6100</CommandLineArguments>
+    <CommandLineArguments>"Trees/src/donor_prog/donor_files/donor10.txt" all</CommandLineArguments>
     <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
@@ -46,6 +46,7 @@
     <Content Include="Trees\src\donor_prog\desktop.ini" />
     <Content Include="Trees\src\donor_prog\donor_files\desktop.ini" />
     <Content Include="Trees\src\donor_prog\donor_files\donor10.txt" />
+    <Content Include="Trees\src\donor_prog\donor_files\donorword2.txt" />
     <Content Include="Trees\src\nodes\desktop.ini" />
     <Content Include="Trees\src\trees\desktop.ini" />
     <Content Include="Trees\test\desktop.ini" />
