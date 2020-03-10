@@ -25,11 +25,16 @@ class BST(Generic[T, K]):
         It serves the same role as the key function in the min, max, and sorted builtin
         functions
         """
-        self.root = root  # this should be a BSTNode object
         if key is not None:
             self.key = key  # how a node's value will be ordered in the BST??
         self.length = 0  # keeps track of how many nodes are in the BST
         self.inorderList = []
+        if isinstance(root, BSTNode): # THIS SHOULD EXECUTE WHEN I CREATE ROOTBST BUT IT DOESNT
+            self.root = root  # this should be a BSTNode object
+
+        else:
+            self.root = None
+            self.add_value(root)
 
     @property
     def height(self) -> int:
@@ -40,7 +45,7 @@ class BST(Generic[T, K]):
         if self.length == 0:
             return -1
         else:  # I think the height of a BST is log base 2 N; but ill check on that
-            return floor(log(self.length)/log(2))
+            return floor(log(self.length) / log(2))
 
     def __len__(self) -> int:
         """
@@ -59,8 +64,16 @@ class BST(Generic[T, K]):
             curNode = self.root
         # base case- tree is empty so create a node and make it the root
         if self.root is None:
-            self.root = BSTNode(value)
-            self.length = self.length + 1
+            if value is None:
+                pass  # create empty tree hopefully
+            else:
+                if isinstance(value, (int, float, str)):
+                    self.root = BSTNode(value)
+                    self.length = self.length + 1
+
+                else:  # this should execute if the value added to the BST is already a BSTNode
+                    self.root = BSTNode(value.value)#this will creat a node out of the BSTNode's value, but no children!
+                    self.length + 1
 
         elif self.key(value) < self.key(curNode.value):  # I think we have to call key on this??
             if curNode.getLeftChild() == -1:  # in other words, if curNode doesn't have a left child..
@@ -189,7 +202,7 @@ class BST(Generic[T, K]):
             self.printPreorder(root.leftChild)
             self.printPreorder(root.rightChild)
 
-    def printInorder(self, root, reverse = False):
+    def printInorder(self, root, reverse=False):
         if reverse == False:
             if root:
                 self.printInorder(root.leftChild)
