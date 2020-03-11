@@ -43,7 +43,7 @@ class BST(Generic[T, K]):
         if self.root is None:
             return -1
         else:
-            x = self._height(curNode = self.root)
+            x = self._height(curNode=self.root)
             if x == 0:
                 return 0
             else:
@@ -71,12 +71,12 @@ class BST(Generic[T, K]):
         if curNode is None:
             curNode = self.root
 
-        if self.root is None: # base case- tree is empty so create a node and make it the root
+        if self.root is None:  # base case- tree is empty so create a node and make it the root
             self.root = BSTNode(value)
             self.length = self.length + 1
         elif self.key(value) == self.key(curNode.value):
             if curNode.getright() == -1:
-                curNode.right = BSTNode(value, parent = curNode)
+                curNode.right = BSTNode(value, parent=curNode)
                 self.length += 1
             else:
                 newNode = curNode.right
@@ -191,11 +191,14 @@ class BST(Generic[T, K]):
                             curParent.left = temp
                         self.length -= 1
                 elif nodeToRemove.numChildren() == 2:
-                    curNode = nodeToRemove.right
+                    curNode = nodeToRemove.right  # 90
                     while curNode.getleft() != -1:
                         curNode = curNode.left
-                    nodeToRemove.value = curNode.value
+                    nodeToRemove.value = curNode.value  # 90
+                    nodeToRemove.right = None
                     del curNode
+
+
                     self.length -= 1
         except MissingValueError as e:
             Exception(e)
@@ -206,7 +209,7 @@ class BST(Generic[T, K]):
             self.printPreorder(root.left)
             self.printPreorder(root.right)
 
-    def printInorder(self, root, reverse = False):
+    def printInorder(self, root, reverse=False):
         if reverse == False:
             if root:
                 self.printInorder(root.left)
