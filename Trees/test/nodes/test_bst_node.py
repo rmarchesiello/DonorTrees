@@ -44,6 +44,13 @@ class TestBSTNode(unittest.TestCase):
         self.assertEqual(testNode.left, 10)
         self.assertEqual(testNode.right, 30)
 
+    def testGetLenFollowingNode(self):
+        rootNode = BSTNode(50)
+        rootNode.left = BSTNode(25)
+        rootNode.right = BSTNode(100)
+
+        self.assertEqual(rootNode.getLenFollowingNode(), 3)
+
 
 if __name__ == "__main__":
     unittest.main()

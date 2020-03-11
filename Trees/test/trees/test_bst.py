@@ -117,13 +117,11 @@ class TestBST(unittest.TestCase):
         tree.add_value(225)
         tree.add_value(275)
 
-
         otherTree = BST()
         otherTree.add_value(275)
         otherTree.add_value(250)
         otherTree.add_value(500)
         otherTree.add_value(225)
-
 
         # tree.printPreorder(root=tree.root)
         # print(tree.__len__()) ## should print 13
@@ -136,6 +134,49 @@ class TestBST(unittest.TestCase):
         self.assertEqual(tree, otherTree)
         # treeLength =
         self.assertEqual(tree.__len__(), otherTree.__len__())
+
+    def testRemoveValueInnerNodeWithTwoChildren(self):
+        # removing an inner node with two children- node with a value of 250
+        tree = BST()
+        tree.add_value(300)
+        tree.add_value(250)
+        tree.add_value(500)
+        tree.add_value(225)
+        tree.add_value(275)
+
+        otherTree = BST()
+        otherTree.add_value(300)
+        otherTree.add_value(500)
+        otherTree.add_value(225)
+        otherTree.add_value(275)
+
+        tree.remove_value(250)
+
+        self.assertEqual(tree, otherTree)
+
+    def testRemoveValueWeirdTree(self):
+        tree = BST()
+        tree.add_value(100)
+        tree.add_value(50)
+        tree.add_value(150)
+        tree.add_value(125)
+        tree.add_value(120)
+        tree.add_value(125)
+        tree.add_value(127)
+        tree.add_value(126)
+
+        otherTree = BST()
+        otherTree.add_value(100)
+        otherTree.add_value(50)
+        otherTree.add_value(150)
+        otherTree.add_value(125)
+        otherTree.add_value(120)
+        otherTree.add_value(125)
+        otherTree.add_value(126)
+
+        # remove 127 from tree
+        tree.remove_value(127)
+        self.assertEqual(tree, otherTree)
 
     def testGetMaxNode(self):
         tree = BST()
@@ -188,7 +229,8 @@ class TestBST(unittest.TestCase):
         tree.add_value(275)
 
         retrievedNode = tree.get_node(105)
-        self.assertEqual()
+        self.assertEqual(retrievedNode.value, 105)
+
 
 if __name__ == '__main__':
     unittest.main()
