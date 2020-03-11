@@ -44,6 +44,165 @@ class TestBST(unittest.TestCase):
         cmp_tree._num_nodes = 5
         self.assertNotEqual(tree, cmp_tree)
 
+    def testRemoveValueWithNoChildren(self):
+        tree = BST()
+        tree.add_value(100)
+        tree.add_value(50)
+        tree.add_value(125)
+        tree.add_value(200)
+
+        otherTree = BST()
+        otherTree.add_value(100)
+        otherTree.add_value(50)
+        otherTree.add_value(125)
+
+        # remove a leaf node (a node with no children)
+        tree.remove_value(200)
+
+        self.assertEqual(tree, otherTree)
+
+    def testRemoveValueWithNoChildrenXD(self):
+        tree = BST()
+        tree.add_value(250)
+        tree.add_value(225)
+        tree.add_value(275)
+
+        otherTree = BST()
+        otherTree.add_value(250)
+        otherTree.add_value(275)
+
+        # remove a left leaf
+        tree.remove_value(225)
+        self.assertEqual(tree, otherTree)
+
+    def testRemoveValueWithOneChildLeftSide(self):
+        tree = BST()
+        tree.add_value(100)
+        tree.add_value(50)
+        tree.add_value(200)
+        tree.add_value(25)
+
+        otherTree = BST()
+        otherTree.add_value(100)
+        otherTree.add_value(25)
+        otherTree.add_value(200)
+
+        # remove value 25 from tree and compare to otherTree
+        tree.remove_value(50)
+
+        self.assertEqual(tree, otherTree)
+
+    def testRemoveValueWithOneChildRightSide(self):
+        tree = BST()
+        tree.add_value(100)
+        tree.add_value(50)
+        tree.add_value(125)
+        tree.add_value(200)
+
+        otherTree = BST()
+        otherTree.add_value(100)
+        otherTree.add_value(50)
+        otherTree.add_value(200)
+
+        # remove value 125 from tree and compare to otherTree
+        tree.remove_value(125)
+
+        self.assertEqual(tree, otherTree)
+
+    def testRemoveValueWithTwoChildren(self):
+        tree = BST()
+        tree.add_value(200)
+        tree.add_value(100)
+        tree.add_value(300)
+        tree.add_value(50)
+        tree.add_value(110)
+        tree.add_value(250)
+        tree.add_value(500)
+        tree.add_value(25)
+        tree.add_value(75)
+        tree.add_value(105)
+        tree.add_value(150)
+        tree.add_value(225)
+        tree.add_value(275)
+
+        otherTree = BST()
+        otherTree.add_value(200)
+        otherTree.add_value(100)
+        otherTree.add_value(500)
+        otherTree.add_value(50)
+        otherTree.add_value(110)
+        otherTree.add_value(250)
+        otherTree.add_value(25)
+        otherTree.add_value(75)
+        otherTree.add_value(105)
+        otherTree.add_value(150)
+        otherTree.add_value(225)
+        otherTree.add_value(275)
+
+        # tree.printPreorder(root=tree.root)
+        # print(tree.__len__()) ## should print 13
+        #
+        tree.remove_value(300)
+        # print()
+        # tree.printPreorder(root=tree.root)
+        # print(tree.__len__()), ## should print 12
+
+        self.assertEqual(tree, otherTree)
+        # treeLength =
+        self.assertEqual(tree.__len__(), otherTree.__len__())
+
+    def testGetMaxNode(self):
+        tree = BST()
+        tree.add_value(50)
+        tree.add_value(25)
+        tree.add_value(100)
+        tree.add_value(10)
+        tree.add_value(150)
+
+        maxNode = tree.get_max_node()
+        self.assertEqual(maxNode.value, 150)
+
+    def testGetMinNode(self):
+        tree = BST()
+        tree.add_value(50)
+        tree.add_value(25)
+        tree.add_value(100)
+        tree.add_value(10)
+        tree.add_value(150)
+
+        minNode = tree.get_min_node()
+        self.assertEqual(minNode.value, 10)
+
+    def testHeight(self):
+        tree = BST()
+        tree.add_value(50)
+        tree.add_value(25)
+        tree.add_value(100)
+        tree.add_value(10)
+        tree.add_value(150)
+
+        heightOfTree = tree.height
+
+        self.assertEqual(heightOfTree, 2)
+
+    def testGetNode(self):
+        tree = BST()
+        tree.add_value(200)
+        tree.add_value(100)
+        tree.add_value(300)
+        tree.add_value(50)
+        tree.add_value(110)
+        tree.add_value(250)
+        tree.add_value(500)
+        tree.add_value(25)
+        tree.add_value(75)
+        tree.add_value(105)
+        tree.add_value(150)
+        tree.add_value(225)
+        tree.add_value(275)
+
+        retrievedNode = tree.get_node(105)
+        self.assertEqual()
 
 if __name__ == '__main__':
     unittest.main()
