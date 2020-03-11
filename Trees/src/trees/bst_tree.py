@@ -29,7 +29,7 @@ class BST(Generic[T, K]):
             self.key = key  # how a node's value will be ordered in the BST??
         self.length = 0  # keeps track of how many nodes are in the BST
         self.inorderList = []
-        if isinstance(root, BSTNode): # THIS SHOULD EXECUTE WHEN I CREATE ROOTBST BUT IT DOESNT
+        if isinstance(root, BSTNode):  # THIS SHOULD EXECUTE WHEN I CREATE rootBST BUT IT DOESNT!!!
             self.root = root  # this should be a BSTNode object
 
         else:
@@ -60,6 +60,15 @@ class BST(Generic[T, K]):
         :param value: the donation amount
         :return: None
         """
+        if isinstance(value, (int, float, str)):
+            #call private _add_value
+            self._add_value(value)
+        else:
+            self._add_node(value)
+            pass
+
+    def _add_node(self, value: BSTNode, curNode: BSTNode = None) -> None:
+        """add an already-instantiated BSTNode to the BST"""
         if curNode is None:
             curNode = self.root
         # base case- tree is empty so create a node and make it the root
@@ -72,7 +81,8 @@ class BST(Generic[T, K]):
                     self.length = self.length + 1
 
                 else:  # this should execute if the value added to the BST is already a BSTNode
-                    self.root = BSTNode(value.value)#this will creat a node out of the BSTNode's value, but no children!
+                    self.root = BSTNode(
+                        value.value)  # this will creat a node out of the BSTNode's value, but no children!
                     self.length + 1
 
         elif self.key(value) < self.key(curNode.value):  # I think we have to call key on this??
@@ -92,13 +102,40 @@ class BST(Generic[T, K]):
             else:
                 self.add_value(value, curNode.rightChild)
 
-        # elif value < curNode.value: #go down left side
-        #     curNode.leftChild = self.add_value(value, curNode.leftChild) #recursive call
-        #     curNode.leftChild.parent = curNode
-        #
-        # else: # go down right side
-        #     curNode.rightChild = self.add_value(value, curNode.rightChild)
-        #     curNode.rightChild.parent = curNode
+    def _add_value(self, value: T, curNode: BSTNode = None) -> None:
+        """add an integer into the BST"""
+        if curNode is None:
+            curNode = self.root
+        # base case- tree is empty so create a node and make it the root
+        if self.root is None:
+            if value is None:
+                pass  # create empty tree hopefully
+            else:
+                if isinstance(value, (int, float, str)):
+                    self.root = BSTNode(value)
+                    self.length = self.length + 1
+
+                else:  # this should execute if the value added to the BST is already a BSTNode
+                    self.root = BSTNode(
+                        value.value)  # this will creat a node out of the BSTNode's value, but no children!
+                    self.length + 1
+
+        elif self.key(value) < self.key(curNode.value):  # I think we have to call key on this??
+            if curNode.getLeftChild() == -1:  # in other words, if curNode doesn't have a left child..
+                curNode.leftChild = BSTNode(value, parent=curNode)
+                curNode.children[0] = curNode.leftChild
+                self.length = self.length + 1
+            else:
+                newNode = curNode.leftChild
+                self.add_value(value, newNode)  # recursive call to continue to find the correct spot for entry
+
+        else:  # value > curNode.rightChild:
+            if curNode.getRightChild() == -1:
+                curNode.rightChild = BSTNode(value, parent=curNode)
+                curNode.children[1] = curNode.rightChild
+                self.length = self.length + 1
+            else:
+                self.add_value(value, curNode.rightChild)
 
     def get_node(self, value: K, curNode: BSTNode = None) -> BSTNode[T]:
         """
