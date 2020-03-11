@@ -111,33 +111,19 @@ class TestBST(unittest.TestCase):
 
     def testRemoveValueWithTwoChildren(self):
         tree = BST()
-        tree.add_value(200)
-        tree.add_value(100)
         tree.add_value(300)
-        tree.add_value(50)
-        tree.add_value(110)
         tree.add_value(250)
         tree.add_value(500)
-        tree.add_value(25)
-        tree.add_value(75)
-        tree.add_value(105)
-        tree.add_value(150)
         tree.add_value(225)
         tree.add_value(275)
 
+
         otherTree = BST()
-        otherTree.add_value(200)
-        otherTree.add_value(100)
-        otherTree.add_value(500)
-        otherTree.add_value(50)
-        otherTree.add_value(110)
-        otherTree.add_value(250)
-        otherTree.add_value(25)
-        otherTree.add_value(75)
-        otherTree.add_value(105)
-        otherTree.add_value(150)
-        otherTree.add_value(225)
         otherTree.add_value(275)
+        otherTree.add_value(250)
+        otherTree.add_value(500)
+        otherTree.add_value(225)
+
 
         # tree.printPreorder(root=tree.root)
         # print(tree.__len__()) ## should print 13

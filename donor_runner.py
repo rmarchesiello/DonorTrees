@@ -6,14 +6,33 @@ import sys, math
 
 if __name__ == "__main__":
     tree = BST()
-    tree.add_value(100)
-    tree.add_value(50)
-    tree.add_value(150)
-    tree.add_value(125)
-    tree.add_value(175)
+    tree.add_value(300)
+    tree.add_value(250)
+    tree.add_value(500)
+    tree.add_value(225)
+    tree.add_value(275)
 
-    tree.remove_value(100)
-    print(tree.root.value)
+    otherTree = BST()
+    otherTree.add_value(275)
+    otherTree.add_value(250)
+    otherTree.add_value(500)
+    otherTree.add_value(225)
+
+
+
+    print(f"tree:")
+    tree.printPreorder(root=tree.root)
+
+    print()
+    tree.remove_value(300)
+
+    print("tree AFTER removing 300: ")
+    tree.printPreorder(root = tree.root)
+
+
+    print()
+    print("otherTree printed: ")
+    otherTree.printPreorder(otherTree.root)
     
     def main():
     
