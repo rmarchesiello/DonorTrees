@@ -18,8 +18,14 @@ if __name__ == "__main__":
     # root.left.left = BSTNode(70)
     # root.left.right = BSTNode(90)
     #
+    # print(tree.__len__())
     # tree.remove_value(80)
     # tree.printPreorder(tree.root)
+    # print(tree.__len__())
+    # print()
+    # tree.remove_value(100)
+    # tree.printPreorder(tree.root)
+    # print(tree.__len__())
 
     # print(tree.root.value)
     # print(tree.root.left.value)
