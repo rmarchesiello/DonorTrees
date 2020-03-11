@@ -228,8 +228,8 @@ class BST(Generic[T, K]):
                 return True
             else:
                 return len(self) == len(other) and self.root.value == other.root.value and \
-                       BST(self.root.left) == BST(other.root.left) and \
-                       BST(self.root.right) == BST(other.root.right)
+                       BST(self.root.leftChild) == BST(other.root.leftChild) and \
+                       BST(self.root.rightChild) == BST(other.root.rightChild)
         else:
             return False
 
