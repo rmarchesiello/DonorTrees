@@ -5,31 +5,30 @@ from Trees.src.donor_prog.donor import Donor
 import sys, math
 
 if __name__ == "__main__":
-    #def testingCode(): #should not run
-        #tree = BST()
-        #tree.add_value(100)
-        #tree.add_value(80)
-        #tree.add_value(200)
-        #tree.add_value(90)
-        #tree.add_value(70)
+    #tree = BST()
+    #tree.add_value(100)
+    #tree.add_value(80)
+    #tree.add_value(200)
+    #tree.add_value(90)
+    #tree.add_value(70)
 
-        #root = BSTNode(100)
-        #root.leftChild = BSTNode(80)
-        #root.rightChild = BSTNode(200)
-        #root.leftChild.leftChild = BSTNode(70)
-        #root.leftChild.rightChild = BSTNode(90)
+    #root = BSTNode(100)
+    #root.leftChild = BSTNode(80)
+    #root.rightChild = BSTNode(200)
+    #root.leftChild.leftChild = BSTNode(70)
+    #root.leftChild.rightChild = BSTNode(90)
 
-        ## check if the list of their nodes' values are the same:
-        #treeNodes = [tree.root.value, tree.root.leftChild.value, tree.root.leftChild.leftChild.value,
-        #             tree.root.leftChild.rightChild.value,
-        #             tree.root.rightChild.value]
-        #rootNodes = [root.value, root.leftChild.value, root.leftChild.leftChild.value,
-        #             root.leftChild.rightChild.value, root.rightChild.value]
-        #cmp_tree = BST(root)
+    ## check if the list of their nodes' values are the same:
+    #treeNodes = [tree.root.value, tree.root.leftChild.value, tree.root.leftChild.leftChild.value,
+    #                tree.root.leftChild.rightChild.value,
+    #                tree.root.rightChild.value]
+    #rootNodes = [root.value, root.leftChild.value, root.leftChild.leftChild.value,
+    #                root.leftChild.rightChild.value, root.rightChild.value]
+    #cmp_tree = BST(root)
 
-        #print(cmp_tree.length)
+    #print(cmp_tree.height)
 
-        #print('p')
+    #print('p')
 
 
     def findDonorDonation(donorNode : BSTNode(Donor)):
@@ -48,6 +47,8 @@ if __name__ == "__main__":
             donorsTree.add_value(Donor(donorID, donationAmount))
 
     donorsTree.storeInorder(donorsTree.root)
+
+    print(donorsTree.height)
 
     if sys.argv[2] == "all":
         donorsTree.printInorder(donorsTree.root)
