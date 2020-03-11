@@ -33,17 +33,17 @@ class TestBSTNode(unittest.TestCase):
     def testNumChildrenWithOneChild(self):
         testNode = BSTNode(15)
         testNode.leftChild = 10
-        testNode.children[0] = testNode.leftChild
-        self.assertEqual(testNode.numChildren(), 1)
+
+        self.assertEqual(testNode.leftChild, 10)
 
     def testNumChildrenWithTwoChildren(self):
         testNode = BSTNode(15)
         testNode.leftChild = 10
         testNode.rightChild = 30
 
-        testNode.children[0] = testNode.leftChild
-        testNode.children[1] = testNode.rightChild
-        self.assertEqual(testNode.numChildren(), 2)
+
+        self.assertEqual(testNode.leftChild, 10)
+        self.assertEqual(testNode.rightChild,30)
 
 if __name__ == "__main__":
     unittest.main()
