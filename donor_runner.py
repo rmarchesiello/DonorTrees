@@ -48,8 +48,6 @@ if __name__ == "__main__":
 
     donorsTree.storeInorder(donorsTree.root)
 
-    print(donorsTree.height)
-
     if sys.argv[2] == "all":
         donorsTree.printInorder(donorsTree.root)
     elif sys.argv[2] == "rich":
