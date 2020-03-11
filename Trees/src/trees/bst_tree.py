@@ -99,20 +99,19 @@ class BST(Generic[T, K]):
             if curNode is None:
                 curNode = self.root
 
-            if self.universalCounter != self.length:
-                if self.key(curNode.value) == value:
-                    self.universalCounter = 0
-                    return curNode
-                elif value < self.key(curNode.value):
-                    self.universalCounter += 1
-                    return self.get_node(value, curNode.leftChild)
-                elif value > self.key(curNode.value):
-                    self.universalCounter += 1
-                    return self.get_node(value, curNode.rightChild)
+            if self.key(curNode.value) == value:
+                return curNode
+            elif value < self.key(curNode.value):
+                return self.get_node(value, curNode.leftChild)
+            elif value > self.key(curNode.value):
+                return self.get_node(value, curNode.rightChild)
+
             else:
-                raise MissingValueError
-        except MissingValueError as e:
-            Exception(e)
+                raise RecursionError
+                return None
+
+        except RecursionError as e:
+            raise MissingValueError
 
     def get_max_node(self) -> BSTNode[T]:
         """
