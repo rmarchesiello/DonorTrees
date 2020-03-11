@@ -61,7 +61,14 @@ class BST(Generic[T, K]):
         if self.root is None:
             self.root = BSTNode(value)
             self.length = self.length + 1
-
+        elif self.key(value) == self.key(curNode.value):
+            if curNode.getRightChild() == -1:
+                curNode.rightChild = BSTNode(value, parent = curNode)
+                curNode.children[1] = curNode.rightChild
+                self.length += 1
+            else:
+                newNode = curNode.rightChild
+                self.add_value(value, newNode)
         elif self.key(value) < self.key(curNode.value):  # I think we have to call key on this??
             if curNode.getLeftChild() == -1:  # in other words, if curNode doesn't have a left child..
                 curNode.leftChild = BSTNode(value, parent=curNode)
@@ -71,7 +78,7 @@ class BST(Generic[T, K]):
                 newNode = curNode.leftChild
                 self.add_value(value, newNode)  # recursive call to continue to find the correct spot for entry
 
-        else:  # value > curNode.rightChild:
+        else:  # self.key(value) > self.key(curNode.rightChild):
             if curNode.getRightChild() == -1:
                 curNode.rightChild = BSTNode(value, parent=curNode)
                 curNode.children[1] = curNode.rightChild
