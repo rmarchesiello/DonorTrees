@@ -197,7 +197,6 @@ class BST(Generic[T, K]):
                     nodeToRemove.value = curNode.value  # 90
                     nodeToRemove.right = None
                     del curNode
-
                     self.length -= 1
         except MissingValueError as e:
             Exception(e)
