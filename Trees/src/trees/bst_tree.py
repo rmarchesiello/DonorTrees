@@ -30,6 +30,7 @@ class BST(Generic[T, K]):
             self.key = key  # how a node's value will be ordered in the BST??
         self.length = 0  # keeps track of how many nodes are in the BST
         self.inorderList = []
+        self.universalCounter = 0
 
     @property
     def height(self) -> int:
@@ -98,18 +99,20 @@ class BST(Generic[T, K]):
             if curNode is None:
                 curNode = self.root
 
-            if self.key(curNode.value) == value:
-                return curNode
-            elif value < self.key(curNode.value):
-                return self.get_node(value, curNode.leftChild)
-            elif value > self.key(curNode.value):
-                return self.get_node(value, curNode.rightChild)
-
+            if self.universalCounter != self.length:
+                if self.key(curNode.value) == value:
+                    self.universalCounter = 0
+                    return curNode
+                elif value < self.key(curNode.value):
+                    self.universalCounter += 1
+                    return self.get_node(value, curNode.leftChild)
+                elif value > self.key(curNode.value):
+                    self.universalCounter += 1
+                    return self.get_node(value, curNode.rightChild)
             else:
-                raise RecursionError
-
-        except RecursionError as e:
-            raise MissingValueError
+                raise MissingValueError
+        except MissingValueError as e:
+            Exception(e)
 
     def get_max_node(self) -> BSTNode[T]:
         """
@@ -144,46 +147,49 @@ class BST(Generic[T, K]):
         """
         try:
             nodeToRemove = self.get_node(value)
-            if nodeToRemove.numChildren() == 0:
-                del nodeToRemove
-                self.length -= 1
+            if nodeToRemove == None:
+                raise MissingValueError
+            else:
+                if nodeToRemove.numChildren() == 0:
+                    del nodeToRemove
+                    self.length -= 1
 
-            elif nodeToRemove.numChildren() == 1:
-                if nodeToRemove.getRightChild() != -1:
-                    temp = nodeToRemove.rightChild
-                    curParent = nodeToRemove.parent
-                    if nodeToRemove is self.root:
-                        self.root = nodeToRemove.rightChild
-                        del nodeToRemove
-                    elif nodeToRemove is nodeToRemove.parent.leftChild:
-                        del nodeToRemove
-                        curParent.leftChild = temp
-                    elif nodeToRemove is nodeToRemove.parent.rightChild:
-                        del nodeToRemove
-                        curParent.rightChild = temp
+                elif nodeToRemove.numChildren() == 1:
+                    if nodeToRemove.getRightChild() != -1:
+                        temp = nodeToRemove.rightChild
+                        curParent = nodeToRemove.parent
+                        if nodeToRemove is self.root:
+                            self.root = nodeToRemove.rightChild
+                            del nodeToRemove
+                        elif nodeToRemove is nodeToRemove.parent.leftChild:
+                            del nodeToRemove
+                            curParent.leftChild = temp
+                        elif nodeToRemove is nodeToRemove.parent.rightChild:
+                            del nodeToRemove
+                            curParent.rightChild = temp
+                        self.length -= 1
+                    else:
+                        temp = nodeToRemove.leftChild
+                        curParent = nodeToRemove.parent
+                        if nodeToRemove is self.root:
+                            self.root = nodeToRemove.leftChild
+                            del nodeToRemove
+                        elif nodeToRemove is nodeToRemove.parent.rightChild:
+                            del nodeToRemove
+                            curParent.rightChild = temp
+                        elif nodeToRemove is nodeToRemove.parent.leftChild:
+                            del nodeToRemove
+                            curParent.leftChild = temp
+                        self.length -= 1
+                elif nodeToRemove.numChildren() == 2:
+                    curNode = nodeToRemove.rightChild
+                    while curNode.getLeftChild() != -1:
+                        curNode = curNode.leftChild
+                    nodeToRemove.value = curNode.value
+                    del curNode
                     self.length -= 1
-                else:
-                    temp = nodeToRemove.leftChild
-                    curParent = nodeToRemove.parent
-                    if nodeToRemove is self.root:
-                        self.root = nodeToRemove.leftChild
-                        del nodeToRemove
-                    elif nodeToRemove is nodeToRemove.parent.rightChild:
-                        del nodeToRemove
-                        curParent.rightChild = temp
-                    elif nodeToRemove is nodeToRemove.parent.leftChild:
-                        del nodeToRemove
-                        curParent.leftChild = temp
-                    self.length -= 1
-            elif nodeToRemove.numChildren() == 2:
-                curNode = nodeToRemove.rightChild
-                while curNode.getLeftChild() != -1:
-                    curNode = curNode.leftChild
-                nodeToRemove.value = curNode.value
-                del curNode
-                self.length -= 1
-        except MissingValueError:
-            print("value you are trying to remove does not exist!")
+        except MissingValueError as e:
+            Exception(e)
 
     def printPreorder(self, root):
         if root:
