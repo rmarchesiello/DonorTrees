@@ -195,7 +195,7 @@ class BST(Generic[T, K]):
                             curParent.left = temp
                         self.length -= 1
                 elif nodeToRemove.numChildren() == 2:
-                    curNode = nodeToRemove.left  # 90
+                    curNode = nodeToRemove.left
                     while curNode.getright() != -1:
                         curNode = curNode.right
                     nodeToRemove.value = curNode.value  # 90
