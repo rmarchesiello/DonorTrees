@@ -5,34 +5,34 @@ from Trees.src.donor_prog.donor import Donor
 import sys, math
 
 if __name__ == "__main__":
-    tree = BST()
-    tree.add_value(300)
-    tree.add_value(250)
-    tree.add_value(500)
-    tree.add_value(225)
-    tree.add_value(275)
+    #tree = BST()
+    #tree.add_value(300)
+    #tree.add_value(250)
+    #tree.add_value(500)
+    #tree.add_value(225)
+    #tree.add_value(275)
 
-    otherTree = BST()
-    otherTree.add_value(275)
-    otherTree.add_value(250)
-    otherTree.add_value(500)
-    otherTree.add_value(225)
-
-
-
-    print(f"tree:")
-    tree.printPreorder(root=tree.root)
-
-    print()
-    tree.remove_value(300)
-
-    print("tree AFTER removing 300: ")
-    tree.printPreorder(root = tree.root)
+    #otherTree = BST()
+    #otherTree.add_value(275)
+    #otherTree.add_value(250)
+    #otherTree.add_value(500)
+    #otherTree.add_value(225)
 
 
-    print()
-    print("otherTree printed: ")
-    otherTree.printPreorder(otherTree.root)
+
+    #print(f"tree:")
+    #tree.printPreorder(root=tree.root)
+
+    #print()
+    #tree.remove_value(300)
+
+    #print("tree AFTER removing 300: ")
+    #tree.printPreorder(root = tree.root)
+
+
+    #print()
+    #print("otherTree printed: ")
+    #otherTree.printPreorder(otherTree.root)
     
     def main():
     
@@ -95,3 +95,4 @@ if __name__ == "__main__":
                      print("No Match")
          else:
              print("No Match")
+    main()
