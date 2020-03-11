@@ -196,13 +196,17 @@ class BST(Generic[T, K]):
                         self.length -= 1
                 elif nodeToRemove.numChildren() == 2:
                     curNode = nodeToRemove.left
+                    flag = False
                     while curNode.getright() != -1:
                         curNode = curNode.right
+                        flag = True
                     nodeToRemove.value = curNode.value  # 90
                     curNodeParent = curNode.parent
                     del curNode
-                    curNodeParent.right = None
-
+                    if flag:
+                        curNodeParent.right = None
+                    else:
+                        curNodeParent.left = None
                     self.length -= 1
         except MissingValueError as e:
             Exception(e)
