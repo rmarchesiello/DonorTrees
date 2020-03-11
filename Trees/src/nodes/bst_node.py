@@ -17,11 +17,13 @@ class BSTNode(Generic[T]):
         :param children: optional children
         :param parent: an optional parent node
         """
+
         self.value = value
         self.leftChild = None
         self.rightChild = None
         self.parent = parent
-
+        self.lengthFollowing = 0
+                             
     def __iter__(self) -> Iterable["BSTNode[T]"]:
         """
         Iterate over the children of this node.
@@ -31,6 +33,16 @@ class BSTNode(Generic[T]):
             yield self.leftChild
         if self.rightChild is not None:
             yield self.rightChild
+
+    def findLengthOfNode(self, root):
+        if root:
+            self.findLengthOfNode(root.leftChild)
+            self.findLengthOfNode(root.rightChild)
+            self.lengthFollowing += 1
+
+    def getLenFollowingNode(self):
+        self.findLengthOfNode(root = self)
+        return self.lengthFollowing
 
     def getRightChild(self):
         if self.rightChild is None:

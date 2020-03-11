@@ -29,6 +29,8 @@ class BST(Generic[T, K]):
         if key is not None:
             self.key = key  # how a node's value will be ordered in the BST??
         self.length = 0  # keeps track of how many nodes are in the BST
+        if self.root != None:
+            self.length = self.root.getLenFollowingNode()
         self.inorderList = []
         self.universalCounter = 0
 
