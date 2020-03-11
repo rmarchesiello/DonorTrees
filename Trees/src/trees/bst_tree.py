@@ -50,10 +50,10 @@ class BST(Generic[T, K]):
                 return x
 
     def _height(self, curNode):
-        if curNode is None or (curNode.leftChild == None and curNode.rightChild == None):
+        if curNode is None or (curNode.left == None and curNode.right == None):
             return 0
         else:
-            return 1 + max(self._height(curNode.leftChild), self._height(curNode.rightChild))
+            return 1 + max(self._height(curNode.left), self._height(curNode.right))
 
     def __len__(self) -> int:
         """
@@ -75,26 +75,26 @@ class BST(Generic[T, K]):
             self.root = BSTNode(value)
             self.length = self.length + 1
         elif self.key(value) == self.key(curNode.value):
-            if curNode.getRightChild() == -1:
-                curNode.rightChild = BSTNode(value, parent = curNode)
+            if curNode.getright() == -1:
+                curNode.right = BSTNode(value, parent = curNode)
                 self.length += 1
             else:
-                newNode = curNode.rightChild
+                newNode = curNode.right
                 self.add_value(value, newNode)
         elif self.key(value) < self.key(curNode.value):  # I think we have to call key on this??
-            if curNode.getLeftChild() == -1:  # in other words, if curNode doesn't have a left child..
-                curNode.leftChild = BSTNode(value, parent=curNode)
+            if curNode.getleft() == -1:  # in other words, if curNode doesn't have a left child..
+                curNode.left = BSTNode(value, parent=curNode)
                 self.length = self.length + 1
             else:
-                newNode = curNode.leftChild
+                newNode = curNode.left
                 self.add_value(value, newNode)  # recursive call to continue to find the correct spot for entry
 
-        else:  # self.key(value) > self.key(curNode.rightChild):
-            if curNode.getRightChild() == -1:
-                curNode.rightChild = BSTNode(value, parent=curNode)
+        else:  # self.key(value) > self.key(curNode.right):
+            if curNode.getright() == -1:
+                curNode.right = BSTNode(value, parent=curNode)
                 self.length = self.length + 1
             else:
-                self.add_value(value, curNode.rightChild)
+                self.add_value(value, curNode.right)
 
     def get_node(self, value: K, curNode: BSTNode = None) -> BSTNode[T]:
         """
@@ -111,9 +111,9 @@ class BST(Generic[T, K]):
             if self.key(curNode.value) == value:
                 return curNode
             elif value < self.key(curNode.value):
-                return self.get_node(value, curNode.leftChild)
+                return self.get_node(value, curNode.left)
             elif value > self.key(curNode.value):
-                return self.get_node(value, curNode.rightChild)
+                return self.get_node(value, curNode.right)
 
             else:
                 raise RecursionError
@@ -130,8 +130,8 @@ class BST(Generic[T, K]):
         :raises EmptyTreeError if the tree is empty
         """
         curNode = self.root
-        while curNode.getRightChild() != -1:
-            curNode = curNode.rightChild
+        while curNode.getright() != -1:
+            curNode = curNode.right
         return curNode
 
     def get_min_node(self) -> BSTNode[T]:
@@ -140,8 +140,8 @@ class BST(Generic[T, K]):
         :return:
         """
         curNode = self.root
-        while curNode.getLeftChild() != -1:
-            curNode = curNode.leftChild
+        while curNode.getleft() != -1:
+            curNode = curNode.left
         return curNode
 
     def remove_value(self, value: T) -> None:
@@ -164,36 +164,36 @@ class BST(Generic[T, K]):
                     self.length -= 1
 
                 elif nodeToRemove.numChildren() == 1:
-                    if nodeToRemove.getRightChild() != -1:
-                        temp = nodeToRemove.rightChild
+                    if nodeToRemove.getright() != -1:
+                        temp = nodeToRemove.right
                         curParent = nodeToRemove.parent
                         if nodeToRemove is self.root:
-                            self.root = nodeToRemove.rightChild
+                            self.root = nodeToRemove.right
                             del nodeToRemove
-                        elif nodeToRemove is nodeToRemove.parent.leftChild:
+                        elif nodeToRemove is nodeToRemove.parent.left:
                             del nodeToRemove
-                            curParent.leftChild = temp
-                        elif nodeToRemove is nodeToRemove.parent.rightChild:
+                            curParent.left = temp
+                        elif nodeToRemove is nodeToRemove.parent.right:
                             del nodeToRemove
-                            curParent.rightChild = temp
+                            curParent.right = temp
                         self.length -= 1
                     else:
-                        temp = nodeToRemove.leftChild
+                        temp = nodeToRemove.left
                         curParent = nodeToRemove.parent
                         if nodeToRemove is self.root:
-                            self.root = nodeToRemove.leftChild
+                            self.root = nodeToRemove.left
                             del nodeToRemove
-                        elif nodeToRemove is nodeToRemove.parent.rightChild:
+                        elif nodeToRemove is nodeToRemove.parent.right:
                             del nodeToRemove
-                            curParent.rightChild = temp
-                        elif nodeToRemove is nodeToRemove.parent.leftChild:
+                            curParent.right = temp
+                        elif nodeToRemove is nodeToRemove.parent.left:
                             del nodeToRemove
-                            curParent.leftChild = temp
+                            curParent.left = temp
                         self.length -= 1
                 elif nodeToRemove.numChildren() == 2:
-                    curNode = nodeToRemove.rightChild
-                    while curNode.getLeftChild() != -1:
-                        curNode = curNode.leftChild
+                    curNode = nodeToRemove.right
+                    while curNode.getleft() != -1:
+                        curNode = curNode.left
                     nodeToRemove.value = curNode.value
                     del curNode
                     self.length -= 1
@@ -203,31 +203,31 @@ class BST(Generic[T, K]):
     def printPreorder(self, root):
         if root:
             print(root.value)
-            self.printPreorder(root.leftChild)
-            self.printPreorder(root.rightChild)
+            self.printPreorder(root.left)
+            self.printPreorder(root.right)
 
     def printInorder(self, root, reverse = False):
         if reverse == False:
             if root:
-                self.printInorder(root.leftChild)
+                self.printInorder(root.left)
                 print(root.value)
-                self.printInorder(root.rightChild)
+                self.printInorder(root.right)
         else:
             if root:
-                self.printInorder(root.rightChild)
+                self.printInorder(root.right)
                 print(root.value)
-                self.printInorder(root.leftChild)
+                self.printInorder(root.left)
 
     def storeInorder(self, root):
         if root:
-            self.storeInorder(root.leftChild)
+            self.storeInorder(root.left)
             self.inorderList.append(root.value)
-            self.storeInorder(root.rightChild)
+            self.storeInorder(root.right)
 
     def printPostorder(self, root):
         if root:
-            self.printPostorder(root.leftChild)
-            self.printPostorder(root.rightChild)
+            self.printPostorder(root.left)
+            self.printPostorder(root.right)
             print(root.value)
 
     def __eq__(self, other: object) -> bool:
@@ -238,8 +238,8 @@ class BST(Generic[T, K]):
                 return True
             else:
                 return len(self) == len(other) and self.root.value == other.root.value and \
-                       BST(self.root.leftChild) == BST(other.root.leftChild) and \
-                       BST(self.root.rightChild) == BST(other.root.rightChild)
+                       BST(self.root.left) == BST(other.root.left) and \
+                       BST(self.root.right) == BST(other.root.right)
         else:
             return False
 

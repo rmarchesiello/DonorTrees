@@ -19,8 +19,8 @@ class BSTNode(Generic[T]):
         """
 
         self.value = value
-        self.leftChild = None
-        self.rightChild = None
+        self.left = None
+        self.right = None
         self.parent = parent
         self.lengthFollowing = 0
                              
@@ -29,39 +29,39 @@ class BSTNode(Generic[T]):
         Iterate over the children of this node.
         :return:
         """
-        if self.leftChild is not None:
-            yield self.leftChild
-        if self.rightChild is not None:
-            yield self.rightChild
+        if self.left is not None:
+            yield self.left
+        if self.right is not None:
+            yield self.right
 
     def findLengthOfNode(self, root):
         if root:
-            self.findLengthOfNode(root.leftChild)
-            self.findLengthOfNode(root.rightChild)
+            self.findLengthOfNode(root.left)
+            self.findLengthOfNode(root.right)
             self.lengthFollowing += 1
 
     def getLenFollowingNode(self):
         self.findLengthOfNode(root = self)
         return self.lengthFollowing
 
-    def getRightChild(self):
-        if self.rightChild is None:
+    def getright(self):
+        if self.right is None:
             return -1
         else:
-            return self.rightChild
+            return self.right
 
-    def getLeftChild(self):
-        if self.leftChild is None:
+    def getleft(self):
+        if self.left is None:
             return -1
         else:
-            return self.leftChild
+            return self.left
 
     def numChildren(self):
-        if self.leftChild == None and self.rightChild == None:
+        if self.left == None and self.right == None:
             return 0
-        elif self.leftChild != None and self.rightChild == None: #left child only
+        elif self.left != None and self.right == None: #left child only
             return 1
-        elif self.leftChild == None and self.rightChild != None: #right child only
+        elif self.left == None and self.right != None: #right child only
             return 1
         else:
             return 2

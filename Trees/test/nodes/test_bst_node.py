@@ -8,23 +8,23 @@ class TestBSTNode(unittest.TestCase):
         testNode = BSTNode(5)
         self.assertEqual(testNode.value, 5)
 
-    def testGetRightChildWithNoChildren(self):
+    def testGetrightWithNoChildren(self):
         testNode = BSTNode(10)
-        self.assertEqual(testNode.getRightChild(), -1)
+        self.assertEqual(testNode.getright(), -1)
 
-    def testGetRightChildWithChildren(self):
+    def testGetrightWithChildren(self):
         testNode = BSTNode(15)
-        testNode.rightChild = 20
-        self.assertEqual(testNode.getRightChild(), 20)
+        testNode.right = 20
+        self.assertEqual(testNode.getright(), 20)
 
-    def testGetLeftChildWithNoChildren(self):
+    def testGetleftWithNoChildren(self):
         testNode = BSTNode(20)
-        self.assertEqual(testNode.getLeftChild(), -1)
+        self.assertEqual(testNode.getleft(), -1)
 
-    def testGetLeftChildWithChildren(self):
+    def testGetleftWithChildren(self):
         testNode = BSTNode(50)
-        testNode.leftChild = 10
-        self.assertEqual(testNode.getLeftChild(), 10)
+        testNode.left = 10
+        self.assertEqual(testNode.getleft(), 10)
 
     def testNumChildrenWithNoChildren(self):
         testNode = BSTNode(15)
@@ -32,18 +32,18 @@ class TestBSTNode(unittest.TestCase):
 
     def testNumChildrenWithOneChild(self):
         testNode = BSTNode(15)
-        testNode.leftChild = 10
+        testNode.left = 10
 
-        self.assertEqual(testNode.leftChild, 10)
+        self.assertEqual(testNode.left, 10)
 
     def testNumChildrenWithTwoChildren(self):
         testNode = BSTNode(15)
-        testNode.leftChild = 10
-        testNode.rightChild = 30
+        testNode.left = 10
+        testNode.right = 30
 
+        self.assertEqual(testNode.left, 10)
+        self.assertEqual(testNode.right, 30)
 
-        self.assertEqual(testNode.leftChild, 10)
-        self.assertEqual(testNode.rightChild,30)
 
 if __name__ == "__main__":
     unittest.main()

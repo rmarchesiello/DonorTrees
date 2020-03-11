@@ -13,17 +13,17 @@ if __name__ == "__main__":
     #tree.add_value(70)
 
     #root = BSTNode(100)
-    #root.leftChild = BSTNode(80)
-    #root.rightChild = BSTNode(200)
-    #root.leftChild.leftChild = BSTNode(70)
-    #root.leftChild.rightChild = BSTNode(90)
+    #root.left = BSTNode(80)
+    #root.right = BSTNode(200)
+    #root.left.left = BSTNode(70)
+    #root.left.right = BSTNode(90)
 
     ## check if the list of their nodes' values are the same:
-    #treeNodes = [tree.root.value, tree.root.leftChild.value, tree.root.leftChild.leftChild.value,
-    #                tree.root.leftChild.rightChild.value,
-    #                tree.root.rightChild.value]
-    #rootNodes = [root.value, root.leftChild.value, root.leftChild.leftChild.value,
-    #                root.leftChild.rightChild.value, root.rightChild.value]
+    #treeNodes = [tree.root.value, tree.root.left.value, tree.root.left.left.value,
+    #                tree.root.left.right.value,
+    #                tree.root.right.value]
+    #rootNodes = [root.value, root.left.value, root.left.left.value,
+    #                root.left.right.value, root.right.value]
     #cmp_tree = BST(root)
 
     #print(cmp_tree.height)
