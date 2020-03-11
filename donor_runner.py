@@ -58,6 +58,8 @@ if __name__ == "__main__":
             amount = int(sys.argv[3][1:])
             if amount > donorsTree.inorderList[-1].donation:
                 print(donorsTree.inorderList[-1])
+            elif amount < donorsTree.inorderList[0].donation:
+                print("No Match")
             else:
                 curDonorLessThanAmount = donorsTree.inorderList[0]
                 for i in donorsTree.inorderList:
