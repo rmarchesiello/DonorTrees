@@ -23,6 +23,7 @@ if __name__ == "__main__":
     print(testTree.root.rightChild.value)
     print(testTree.root.rightChild.rightChild.value)
     print(testTree.root.rightChild.rightChild.rightChild.value)
+    print(testTree.length)
 
     #def findDonorDonation(donorNode : BSTNode(Donor)):
     #    return donorNode.donation

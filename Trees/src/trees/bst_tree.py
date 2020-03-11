@@ -57,8 +57,8 @@ class BST(Generic[T, K]):
         """
         if curNode is None:
             curNode = self.root
-        # base case- tree is empty so create a node and make it the root
-        if self.root is None:
+
+        if self.root is None: # base case- tree is empty so create a node and make it the root
             self.root = BSTNode(value)
             self.length = self.length + 1
         elif self.key(value) == self.key(curNode.value):
@@ -85,14 +85,6 @@ class BST(Generic[T, K]):
                 self.length = self.length + 1
             else:
                 self.add_value(value, curNode.rightChild)
-
-        # elif value < curNode.value: #go down left side
-        #     curNode.leftChild = self.add_value(value, curNode.leftChild) #recursive call
-        #     curNode.leftChild.parent = curNode
-        #
-        # else: # go down right side
-        #     curNode.rightChild = self.add_value(value, curNode.rightChild)
-        #     curNode.rightChild.parent = curNode
 
     def get_node(self, value: K, curNode: BSTNode = None) -> BSTNode[T]:
         """
@@ -154,7 +146,7 @@ class BST(Generic[T, K]):
             nodeToRemove = self.get_node(value)
             if nodeToRemove.numChildren() == 0:
                 del nodeToRemove
-                self.length - 1
+                self.length -= 1
 
             elif nodeToRemove.numChildren() == 1:
                 if nodeToRemove.getRightChild() != -1:
@@ -169,6 +161,7 @@ class BST(Generic[T, K]):
                     elif nodeToRemove is nodeToRemove.parent.rightChild:
                         del nodeToRemove
                         curParent.rightChild = temp
+                    self.length -= 1
                 else:
                     temp = nodeToRemove.leftChild
                     curParent = nodeToRemove.parent
@@ -181,12 +174,14 @@ class BST(Generic[T, K]):
                     elif nodeToRemove is nodeToRemove.parent.leftChild:
                         del nodeToRemove
                         curParent.leftChild = temp
+                    self.length -= 1
             elif nodeToRemove.numChildren() == 2:
                 curNode = nodeToRemove.rightChild
                 while curNode.getLeftChild() != -1:
                     curNode = curNode.leftChild
                 nodeToRemove.value = curNode.value
                 del curNode
+                self.length -= 1
         except MissingValueError:
             print("value you are trying to remove does not exist!")
 
