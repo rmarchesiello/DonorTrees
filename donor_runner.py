@@ -6,15 +6,15 @@ import sys, math
 
 if __name__ == "__main__":
     #def testingCode(): #should not run
-        #testTree = BST()
+    #    testTree = BST()
 
-        #listOfNodes = []
+    #    listOfNodes = []
 
-        #testTree.add_value(5)
-        #testTree.add_value(5)
-        #testTree.add_value(5)
-        #testTree.add_value(5)
-        #testTree.remove_value(6)
+    #    testTree.add_value(5)
+    #    testTree.add_value(5)
+    #    testTree.add_value(5)
+    #    testTree.add_value(5)
+    #    testTree.remove_value(6)
 
     def findDonorDonation(donorNode : BSTNode(Donor)):
         return donorNode.donation

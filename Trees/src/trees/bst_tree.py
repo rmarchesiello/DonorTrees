@@ -65,7 +65,6 @@ class BST(Generic[T, K]):
         elif self.key(value) == self.key(curNode.value):
             if curNode.getRightChild() == -1:
                 curNode.rightChild = BSTNode(value, parent = curNode)
-                curNode.children[1] = curNode.rightChild
                 self.length += 1
             else:
                 newNode = curNode.rightChild
@@ -73,7 +72,6 @@ class BST(Generic[T, K]):
         elif self.key(value) < self.key(curNode.value):  # I think we have to call key on this??
             if curNode.getLeftChild() == -1:  # in other words, if curNode doesn't have a left child..
                 curNode.leftChild = BSTNode(value, parent=curNode)
-                curNode.children[0] = curNode.leftChild
                 self.length = self.length + 1
             else:
                 newNode = curNode.leftChild
@@ -82,7 +80,6 @@ class BST(Generic[T, K]):
         else:  # self.key(value) > self.key(curNode.rightChild):
             if curNode.getRightChild() == -1:
                 curNode.rightChild = BSTNode(value, parent=curNode)
-                curNode.children[1] = curNode.rightChild
                 self.length = self.length + 1
             else:
                 self.add_value(value, curNode.rightChild)
@@ -112,6 +109,7 @@ class BST(Generic[T, K]):
 
         except RecursionError as e:
             raise MissingValueError
+            return None
 
     def get_max_node(self) -> BSTNode[T]:
         """

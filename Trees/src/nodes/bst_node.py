@@ -18,7 +18,6 @@ class BSTNode(Generic[T]):
         :param parent: an optional parent node
         """
         self.value = value
-        self.children = [None, None]
         self.leftChild = None
         self.rightChild = None
         self.parent = parent
@@ -46,7 +45,7 @@ class BSTNode(Generic[T]):
             return self.leftChild
 
     def numChildren(self):
-        if self.children == [None, None]:
+        if self.leftChild == None and self.rightChild == None:
             return 0
         elif self.leftChild != None and self.rightChild == None: #left child only
             return 1
